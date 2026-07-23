@@ -1,0 +1,85 @@
+[
+  {
+    "ContainingType": "apexdojohub_API.Controllers.SincronizacaoController",
+    "Method": "Sincronizar",
+    "RelativePath": "API/Sincronizar/rodar-sync",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "apexdojohub_API.Controllers.UsuarioController",
+    "Method": "ConsultarUsuario",
+    "RelativePath": "API/Usuario/ConsultarUsuario/{usuarioId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "usuarioId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "apexdojohub_API.Controllers.UsuarioController",
+    "Method": "CriarUsuario",
+    "RelativePath": "API/Usuario/CriarUsuario",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Nome",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Login",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Email",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Senha",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "TipoUsuario",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "FotoPerfil",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "apexdojohub_API.Controllers.UsuarioController",
+    "Method": "Login",
+    "RelativePath": "API/Usuario/Login",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "usuario",
+        "Type": "apexdojohub_API.Models.Usuario.UsuarioLogin",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  }
+]

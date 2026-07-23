@@ -1,0 +1,181 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "apexdojohub_API",
+    "version": "v1"
+  },
+  "paths": {
+    "/API/Sincronizar/rodar-sync": {
+      "post": {
+        "tags": [
+          "Sincronizacao"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/API/Usuario/CriarUsuario": {
+      "post": {
+        "tags": [
+          "Usuario"
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "required": [
+                  "Nome"
+                ],
+                "type": "object",
+                "properties": {
+                  "Nome": {
+                    "type": "string"
+                  },
+                  "Login": {
+                    "type": "string"
+                  },
+                  "Email": {
+                    "type": "string",
+                    "format": "email"
+                  },
+                  "Senha": {
+                    "minLength": 7,
+                    "pattern": "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[^A-Za-z0-9]).+$",
+                    "type": "string"
+                  },
+                  "TipoUsuario": {
+                    "$ref": "#/components/schemas/TipoUsuario"
+                  },
+                  "FotoPerfil": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              },
+              "encoding": {
+                "Nome": {
+                  "style": "form"
+                },
+                "Login": {
+                  "style": "form"
+                },
+                "Email": {
+                  "style": "form"
+                },
+                "Senha": {
+                  "style": "form"
+                },
+                "TipoUsuario": {
+                  "style": "form"
+                },
+                "FotoPerfil": {
+                  "style": "form"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/API/Usuario/ConsultarUsuario/{usuarioId}": {
+      "get": {
+        "tags": [
+          "Usuario"
+        ],
+        "parameters": [
+          {
+            "name": "usuarioId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/API/Usuario/Login": {
+      "post": {
+        "tags": [
+          "Usuario"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UsuarioLogin"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UsuarioLogin"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UsuarioLogin"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "TipoUsuario": {
+        "enum": [
+          "ADMIN",
+          "USUARIO_COMUM"
+        ],
+        "type": "string"
+      },
+      "UsuarioLogin": {
+        "type": "object",
+        "properties": {
+          "loginOuEmail": {
+            "type": "string",
+            "nullable": true
+          },
+          "senha": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "securitySchemes": {
+      "Bearer": {
+        "type": "http",
+        "description": "Digite: Bearer {seu token JWT}",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  },
+  "security": [
+    {
+      "Bearer": [ ]
+    }
+  ]
+}

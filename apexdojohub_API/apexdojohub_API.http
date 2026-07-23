@@ -1,0 +1,5 @@
+@apexdojohub_API_HostAddress = http://localhost:5278
+
+GET {{apexdojohub_API_HostAddress}}/swagger/index.html
+
+###

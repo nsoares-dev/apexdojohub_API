@@ -1,0 +1,284 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\nicol\\source\\repos\\apexdojohub_API\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{21CDAF80-CD03-0F00-6A0A-EE765712775F}|apexdojohub_API\\apexdojohub_API.csproj|c:\\users\\nicol\\source\\repos\\apexdojohub_api\\apexdojohub_api\\services\\usuarioservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{21CDAF80-CD03-0F00-6A0A-EE765712775F}|apexdojohub_API\\apexdojohub_API.csproj|solutionrelative:apexdojohub_api\\services\\usuarioservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{21CDAF80-CD03-0F00-6A0A-EE765712775F}|apexdojohub_API\\apexdojohub_API.csproj|c:\\users\\nicol\\source\\repos\\apexdojohub_api\\apexdojohub_api\\controllers\\usuariocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{21CDAF80-CD03-0F00-6A0A-EE765712775F}|apexdojohub_API\\apexdojohub_API.csproj|solutionrelative:apexdojohub_api\\controllers\\usuariocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{21CDAF80-CD03-0F00-6A0A-EE765712775F}|apexdojohub_API\\apexdojohub_API.csproj|c:\\users\\nicol\\source\\repos\\apexdojohub_api\\apexdojohub_api\\models\\usuario\\usuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{21CDAF80-CD03-0F00-6A0A-EE765712775F}|apexdojohub_API\\apexdojohub_API.csproj|solutionrelative:apexdojohub_api\\models\\usuario\\usuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{21CDAF80-CD03-0F00-6A0A-EE765712775F}|apexdojohub_API\\apexdojohub_API.csproj|c:\\users\\nicol\\source\\repos\\apexdojohub_api\\apexdojohub_api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{21CDAF80-CD03-0F00-6A0A-EE765712775F}|apexdojohub_API\\apexdojohub_API.csproj|solutionrelative:apexdojohub_api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{21CDAF80-CD03-0F00-6A0A-EE765712775F}|apexdojohub_API\\apexdojohub_API.csproj|c:\\users\\nicol\\source\\repos\\apexdojohub_api\\apexdojohub_api\\helpers\\helpers.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{21CDAF80-CD03-0F00-6A0A-EE765712775F}|apexdojohub_API\\apexdojohub_API.csproj|solutionrelative:apexdojohub_api\\helpers\\helpers.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{21CDAF80-CD03-0F00-6A0A-EE765712775F}|apexdojohub_API\\apexdojohub_API.csproj|c:\\users\\nicol\\source\\repos\\apexdojohub_api\\apexdojohub_api\\util\\util.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{21CDAF80-CD03-0F00-6A0A-EE765712775F}|apexdojohub_API\\apexdojohub_API.csproj|solutionrelative:apexdojohub_api\\util\\util.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{21CDAF80-CD03-0F00-6A0A-EE765712775F}|apexdojohub_API\\apexdojohub_API.csproj|c:\\users\\nicol\\source\\repos\\apexdojohub_api\\apexdojohub_api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{21CDAF80-CD03-0F00-6A0A-EE765712775F}|apexdojohub_API\\apexdojohub_API.csproj|solutionrelative:apexdojohub_api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{21CDAF80-CD03-0F00-6A0A-EE765712775F}|apexdojohub_API\\apexdojohub_API.csproj|c:\\users\\nicol\\source\\repos\\apexdojohub_api\\apexdojohub_api\\services\\syncservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{21CDAF80-CD03-0F00-6A0A-EE765712775F}|apexdojohub_API\\apexdojohub_API.csproj|solutionrelative:apexdojohub_api\\services\\syncservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{21CDAF80-CD03-0F00-6A0A-EE765712775F}|apexdojohub_API\\apexdojohub_API.csproj|c:\\users\\nicol\\source\\repos\\apexdojohub_api\\apexdojohub_api\\controllers\\sincronizacaocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{21CDAF80-CD03-0F00-6A0A-EE765712775F}|apexdojohub_API\\apexdojohub_API.csproj|solutionrelative:apexdojohub_api\\controllers\\sincronizacaocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{21CDAF80-CD03-0F00-6A0A-EE765712775F}|apexdojohub_API\\apexdojohub_API.csproj|c:\\users\\nicol\\source\\repos\\apexdojohub_api\\apexdojohub_api\\constantes\\constantes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{21CDAF80-CD03-0F00-6A0A-EE765712775F}|apexdojohub_API\\apexdojohub_API.csproj|solutionrelative:apexdojohub_api\\constantes\\constantes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{21CDAF80-CD03-0F00-6A0A-EE765712775F}|apexdojohub_API\\apexdojohub_API.csproj|c:\\users\\nicol\\source\\repos\\apexdojohub_api\\apexdojohub_api\\interface\\iusuariointerface.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{21CDAF80-CD03-0F00-6A0A-EE765712775F}|apexdojohub_API\\apexdojohub_API.csproj|solutionrelative:apexdojohub_api\\interface\\iusuariointerface.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{21CDAF80-CD03-0F00-6A0A-EE765712775F}|apexdojohub_API\\apexdojohub_API.csproj|c:\\users\\nicol\\source\\repos\\apexdojohub_api\\apexdojohub_api\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{21CDAF80-CD03-0F00-6A0A-EE765712775F}|apexdojohub_API\\apexdojohub_API.csproj|solutionrelative:apexdojohub_api\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{21CDAF80-CD03-0F00-6A0A-EE765712775F}|apexdojohub_API\\apexdojohub_API.csproj|c:\\users\\nicol\\source\\repos\\apexdojohub_api\\apexdojohub_api\\services\\tokenservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{21CDAF80-CD03-0F00-6A0A-EE765712775F}|apexdojohub_API\\apexdojohub_API.csproj|solutionrelative:apexdojohub_api\\services\\tokenservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{21CDAF80-CD03-0F00-6A0A-EE765712775F}|apexdojohub_API\\apexdojohub_API.csproj|c:\\users\\nicol\\source\\repos\\apexdojohub_api\\apexdojohub_api\\enum\\tipousuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{21CDAF80-CD03-0F00-6A0A-EE765712775F}|apexdojohub_API\\apexdojohub_API.csproj|solutionrelative:apexdojohub_api\\enum\\tipousuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{21CDAF80-CD03-0F00-6A0A-EE765712775F}|apexdojohub_API\\apexdojohub_API.csproj|c:\\users\\nicol\\source\\repos\\apexdojohub_api\\apexdojohub_api\\apexdojohub_api.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}",
+      "RelativeMoniker": "D:0:0:{21CDAF80-CD03-0F00-6A0A-EE765712775F}|apexdojohub_API\\apexdojohub_API.csproj|solutionrelative:apexdojohub_api\\apexdojohub_api.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{21CDAF80-CD03-0F00-6A0A-EE765712775F}|apexdojohub_API\\apexdojohub_API.csproj|c:\\users\\nicol\\source\\repos\\apexdojohub_api\\apexdojohub_api\\apexdojohub_api.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{21CDAF80-CD03-0F00-6A0A-EE765712775F}|apexdojohub_API\\apexdojohub_API.csproj|solutionrelative:apexdojohub_api\\apexdojohub_api.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "UsuarioService.cs",
+              "DocumentMoniker": "C:\\Users\\nicol\\source\\repos\\apexdojohub_API\\apexdojohub_API\\Services\\UsuarioService.cs",
+              "RelativeDocumentMoniker": "apexdojohub_API\\Services\\UsuarioService.cs",
+              "ToolTip": "C:\\Users\\nicol\\source\\repos\\apexdojohub_API\\apexdojohub_API\\Services\\UsuarioService.cs",
+              "RelativeToolTip": "apexdojohub_API\\Services\\UsuarioService.cs",
+              "ViewState": "AgIAAFkAAAAAAAAAAAAIwF8AAAAtAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-22T23:47:12.688Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "UsuarioController.cs",
+              "DocumentMoniker": "C:\\Users\\nicol\\source\\repos\\apexdojohub_API\\apexdojohub_API\\Controllers\\UsuarioController.cs",
+              "RelativeDocumentMoniker": "apexdojohub_API\\Controllers\\UsuarioController.cs",
+              "ToolTip": "C:\\Users\\nicol\\source\\repos\\apexdojohub_API\\apexdojohub_API\\Controllers\\UsuarioController.cs",
+              "RelativeToolTip": "apexdojohub_API\\Controllers\\UsuarioController.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAswB0AAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-22T23:43:04.883Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "TipoUsuario.cs",
+              "DocumentMoniker": "C:\\Users\\nicol\\source\\repos\\apexdojohub_API\\apexdojohub_API\\Enum\\TipoUsuario.cs",
+              "RelativeDocumentMoniker": "apexdojohub_API\\Enum\\TipoUsuario.cs",
+              "ToolTip": "C:\\Users\\nicol\\source\\repos\\apexdojohub_API\\apexdojohub_API\\Enum\\TipoUsuario.cs",
+              "RelativeToolTip": "apexdojohub_API\\Enum\\TipoUsuario.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-22T23:45:33.693Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Usuario.cs",
+              "DocumentMoniker": "C:\\Users\\nicol\\source\\repos\\apexdojohub_API\\apexdojohub_API\\Models\\Usuario\\Usuario.cs",
+              "RelativeDocumentMoniker": "apexdojohub_API\\Models\\Usuario\\Usuario.cs",
+              "ToolTip": "C:\\Users\\nicol\\source\\repos\\apexdojohub_API\\apexdojohub_API\\Models\\Usuario\\Usuario.cs",
+              "RelativeToolTip": "apexdojohub_API\\Models\\Usuario\\Usuario.cs",
+              "ViewState": "AgIAACUAAAAAAAAAAAAgwB4AAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-22T23:44:54.241Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "SyncService.cs",
+              "DocumentMoniker": "C:\\Users\\nicol\\source\\repos\\apexdojohub_API\\apexdojohub_API\\Services\\SyncService.cs",
+              "RelativeDocumentMoniker": "apexdojohub_API\\Services\\SyncService.cs",
+              "ToolTip": "C:\\Users\\nicol\\source\\repos\\apexdojohub_API\\apexdojohub_API\\Services\\SyncService.cs",
+              "RelativeToolTip": "apexdojohub_API\\Services\\SyncService.cs",
+              "ViewState": "AgIAAEUAAAAAAAAAAAAEwFMAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-23T01:27:30.556Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\nicol\\source\\repos\\apexdojohub_API\\apexdojohub_API\\Program.cs",
+              "RelativeDocumentMoniker": "apexdojohub_API\\Program.cs",
+              "ToolTip": "C:\\Users\\nicol\\source\\repos\\apexdojohub_API\\apexdojohub_API\\Program.cs",
+              "RelativeToolTip": "apexdojohub_API\\Program.cs",
+              "ViewState": "AgIAAAEAAAAAAAAAAAAwwA8AAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-22T23:35:31.427Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "IUsuarioInterface.cs",
+              "DocumentMoniker": "C:\\Users\\nicol\\source\\repos\\apexdojohub_API\\apexdojohub_API\\Interface\\IUsuarioInterface.cs",
+              "RelativeDocumentMoniker": "apexdojohub_API\\Interface\\IUsuarioInterface.cs",
+              "ToolTip": "C:\\Users\\nicol\\source\\repos\\apexdojohub_API\\apexdojohub_API\\Interface\\IUsuarioInterface.cs",
+              "RelativeToolTip": "apexdojohub_API\\Interface\\IUsuarioInterface.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-22T23:46:33.325Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Constantes.cs",
+              "DocumentMoniker": "C:\\Users\\nicol\\source\\repos\\apexdojohub_API\\apexdojohub_API\\Constantes\\Constantes.cs",
+              "RelativeDocumentMoniker": "apexdojohub_API\\Constantes\\Constantes.cs",
+              "ToolTip": "C:\\Users\\nicol\\source\\repos\\apexdojohub_API\\apexdojohub_API\\Constantes\\Constantes.cs",
+              "RelativeToolTip": "apexdojohub_API\\Constantes\\Constantes.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAA4AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-22T23:50:12.458Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\nicol\\source\\repos\\apexdojohub_API\\apexdojohub_API\\appsettings.json",
+              "RelativeDocumentMoniker": "apexdojohub_API\\appsettings.json",
+              "ToolTip": "C:\\Users\\nicol\\source\\repos\\apexdojohub_API\\apexdojohub_API\\appsettings.json",
+              "RelativeToolTip": "apexdojohub_API\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-07-22T23:37:25.801Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Helpers.cs",
+              "DocumentMoniker": "C:\\Users\\nicol\\source\\repos\\apexdojohub_API\\apexdojohub_API\\Helpers\\Helpers.cs",
+              "RelativeDocumentMoniker": "apexdojohub_API\\Helpers\\Helpers.cs",
+              "ToolTip": "C:\\Users\\nicol\\source\\repos\\apexdojohub_API\\apexdojohub_API\\Helpers\\Helpers.cs",
+              "RelativeToolTip": "apexdojohub_API\\Helpers\\Helpers.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-22T23:48:28.121Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Util.cs",
+              "DocumentMoniker": "C:\\Users\\nicol\\source\\repos\\apexdojohub_API\\apexdojohub_API\\Util\\Util.cs",
+              "RelativeDocumentMoniker": "apexdojohub_API\\Util\\Util.cs",
+              "ToolTip": "C:\\Users\\nicol\\source\\repos\\apexdojohub_API\\apexdojohub_API\\Util\\Util.cs",
+              "RelativeToolTip": "apexdojohub_API\\Util\\Util.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-22T23:51:00.808Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "SincronizacaoController.cs",
+              "DocumentMoniker": "C:\\Users\\nicol\\source\\repos\\apexdojohub_API\\apexdojohub_API\\Controllers\\SincronizacaoController.cs",
+              "RelativeDocumentMoniker": "apexdojohub_API\\Controllers\\SincronizacaoController.cs",
+              "ToolTip": "C:\\Users\\nicol\\source\\repos\\apexdojohub_API\\apexdojohub_API\\Controllers\\SincronizacaoController.cs",
+              "RelativeToolTip": "apexdojohub_API\\Controllers\\SincronizacaoController.cs",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAmwA0AAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-23T05:13:58.003Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "TokenService.cs",
+              "DocumentMoniker": "C:\\Users\\nicol\\source\\repos\\apexdojohub_API\\apexdojohub_API\\Services\\TokenService.cs",
+              "RelativeDocumentMoniker": "apexdojohub_API\\Services\\TokenService.cs",
+              "ToolTip": "C:\\Users\\nicol\\source\\repos\\apexdojohub_API\\apexdojohub_API\\Services\\TokenService.cs",
+              "RelativeToolTip": "apexdojohub_API\\Services\\TokenService.cs",
+              "ViewState": "AgIAABgAAAAAAAAAAAAYwCcAAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-22T23:52:07.037Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "launchSettings.json",
+              "DocumentMoniker": "C:\\Users\\nicol\\source\\repos\\apexdojohub_API\\apexdojohub_API\\Properties\\launchSettings.json",
+              "RelativeDocumentMoniker": "apexdojohub_API\\Properties\\launchSettings.json",
+              "ToolTip": "C:\\Users\\nicol\\source\\repos\\apexdojohub_API\\apexdojohub_API\\Properties\\launchSettings.json",
+              "RelativeToolTip": "apexdojohub_API\\Properties\\launchSettings.json",
+              "ViewState": "AgIAABUAAAAAAAAAAAAAABkAAAAbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-07-23T00:03:12.947Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "apexdojohub_API.http",
+              "DocumentMoniker": "C:\\Users\\nicol\\source\\repos\\apexdojohub_API\\apexdojohub_API\\apexdojohub_API.http",
+              "RelativeDocumentMoniker": "apexdojohub_API\\apexdojohub_API.http",
+              "ToolTip": "C:\\Users\\nicol\\source\\repos\\apexdojohub_API\\apexdojohub_API\\apexdojohub_API.http",
+              "RelativeToolTip": "apexdojohub_API\\apexdojohub_API.http",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003502|",
+              "WhenOpened": "2026-07-23T00:02:03.41Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "apexdojohub_API.csproj",
+              "DocumentMoniker": "C:\\Users\\nicol\\source\\repos\\apexdojohub_API\\apexdojohub_API\\apexdojohub_API.csproj",
+              "RelativeDocumentMoniker": "apexdojohub_API\\apexdojohub_API.csproj",
+              "ToolTip": "C:\\Users\\nicol\\source\\repos\\apexdojohub_API\\apexdojohub_API\\apexdojohub_API.csproj",
+              "RelativeToolTip": "apexdojohub_API\\apexdojohub_API.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-07-23T00:02:37.048Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
