@@ -89,8 +89,10 @@ namespace apexdojohub_API.Controllers
                 var cookieOptions = new CookieOptions
                 {
                     HttpOnly = true, // Bloqueia a leitura via JavaScript (Anti-XSS)
-                    Secure = true,   // Exige HTTPS. (Aviso: mude para 'false' se estiver testando em localhost com HTTP)
-                    SameSite = SameSiteMode.Lax, // Evita envio do cookie por outros sites (Anti-CSRF)
+                    //Secure = true,   // Exige HTTPS. (Aviso: mude para 'false' se estiver testando em localhost com HTTP)
+                    Secure = true,
+                    //SameSite = SameSiteMode.Lax, // Evita envio do cookie por outros sites (Anti-CSRF)
+                    SameSite = SameSiteMode.None, // Evita envio do cookie por outros sites (Anti-CSRF)
                     Expires = DateTime.UtcNow.AddHours(1) // Deve ser igual ao tempo de expiração do seu token
                 };
 

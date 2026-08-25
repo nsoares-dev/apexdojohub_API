@@ -13,10 +13,21 @@
 		<PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
 		<PackageReference Include="ClosedXML" Version="0.105.0" />
 		<PackageReference Include="Dapper" Version="2.1.79" />
+		<PackageReference Include="ExcelDataReader" Version="3.9.0" />
 		<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.0" />
 		<PackageReference Include="Microsoft.Data.SqlClient" Version="6.1.3" />
 		<PackageReference Include="Microsoft.Graph" Version="6.2.0" />
 		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
+	</ItemGroup>
+
+
+
+	<ItemGroup>
+	  <Folder Include="Procedures\Aluno\" />
+	  <Folder Include="Procedures\FluxoCaixa\" />
+	  <Folder Include="Procedures\AlunosPosicao\" />
+	  <Folder Include="Procedures\Mensalidades\" />
+	  <Folder Include="Procedures\Overview\" />
 	</ItemGroup>
 
 

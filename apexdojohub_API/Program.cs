@@ -21,13 +21,12 @@ namespace apexdojohub_API
 
             builder.Services.AddCors(options =>
             {
-                options.AddPolicy("CorsPolicy", policy =>
+                options.AddPolicy("PermitirTudo", policy =>
                 {
-                    policy
-                        .WithOrigins("http://localhost:5173")
-                        .AllowAnyHeader()
-                        .AllowAnyMethod()
-                        .AllowCredentials();
+                    policy.SetIsOriginAllowed(origin => true)
+               .AllowAnyMethod()
+               .AllowAnyHeader()
+               .AllowCredentials();
                 });
             });
 
@@ -68,6 +67,13 @@ namespace apexdojohub_API
             builder.Services.AddScoped<IUsuarioInterface, UsuarioService>();
             builder.Services.AddScoped<TokenService>();
             builder.Services.AddScoped<SyncService>();
+            builder.Services.AddScoped<OverviewService>();
+            builder.Services.AddScoped<LancamentoService>();
+            builder.Services.AddScoped<MensalidadeService>();
+            builder.Services.AddScoped<AlunoService>();
+            builder.Services.AddScoped<AlunosPosicaoService>();
+            builder.Services.AddScoped<LogSyncService>();
+
 
             builder.Services.AddControllers()
                .AddJsonOptions(options =>
@@ -134,8 +140,8 @@ namespace apexdojohub_API
                 app.UseSwaggerUI();
             }
 
-            app.UseHttpsRedirection();
-            app.UseCors("CorsPolicy");
+            //app.UseHttpsRedirection();
+            app.UseCors("PermitirTudo");
             app.UseAuthentication();
             app.UseAuthorization();
 

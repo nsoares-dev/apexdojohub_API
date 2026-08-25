@@ -1,150 +1,213 @@
 ﻿using apexdojohub_API.Helpers;
-using ClosedXML.Excel;
 using Dapper;
 using Microsoft.Data.SqlClient;
 using System.Data;
 using Azure.Identity;
 using Microsoft.Graph;
 using System.IO;
-
+using System.Collections.Generic;
+using ExcelDataReader;
+using System;
+using System.Threading.Tasks;
+using DocumentFormat.OpenXml.Drawing.Charts;
+using DocumentFormat.OpenXml.Drawing;
 
 namespace apexdojohub_API.Services
 {
     public class SyncService
     {
         private readonly IDbConnection _connection;
+
         public SyncService(IDbConnection connection)
         {
             _connection = connection;
+            System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
         }
-        //public async Task<object> SincronizarPlanilhaAsync()
-        //{
-        //    try
-        //    {
-        //        using var excelStream = await BaixarArquivoDoOneDrive();
-        //        int totalAlunos = 0, totalLancamentos = 0, totalResumo = 0;
 
-        //        if (_connection.State != ConnectionState.Open)
-        //            await ((SqlConnection)_connection).OpenAsync();
-
-        //        // processar a aba alunos
-        //        using (var planilha = new XLWorkbook(excelStream))
-        //        {
-        //            var wsAlunos = planilha.Worksheet("Alunos");
-        //            var linhasAlunos = wsAlunos.RangeUsed().RowsUsed().Skip(1); // pular 1ª Linha ou cabeçalho
-
-        //            foreach (var row in linhasAlunos)
-        //            {
-        //                using var commandAlunos = _connection.CreateStoredProcedure(Constantes.Constantes.SYNCALUNO);
-
-        //                commandAlunos.Parameters.Add(new SqlParameter("@Nome", row.Cell("A").GetValue<string>()));
-        //                commandAlunos.Parameters.Add(new SqlParameter("@Status", row.Cell("B").GetValue<string>()));
-        //                commandAlunos.Parameters.Add(new SqlParameter("@Mensalidade", row.Cell("J").GetValue<decimal>()));
-        //                commandAlunos.Parameters.Add(new SqlParameter("@DiaVencimento", row.Cell("K").GetValue<int>()));
-
-        //                var cellNascimento = row.Cell("C");
-        //                commandAlunos.Parameters.Add(new SqlParameter("@Nascimento", cellNascimento.IsEmpty() ? DBNull.Value : cellNascimento.GetDateTime()));
-
-        //                var cellMatricula = row.Cell("F");
-        //                commandAlunos.Parameters.Add(new SqlParameter("@Matricula", cellMatricula.IsEmpty() ? DBNull.Value : cellMatricula.GetDateTime()));
-
-        //                var cellCelular = row.Cell("D").GetValue<string>();
-        //                commandAlunos.Parameters.Add(new SqlParameter("@Celular", string.IsNullOrWhiteSpace(cellCelular) ? DBNull.Value : cellCelular));
-
-        //                var cellContato = row.Cell("E").GetValue<string>();
-        //                commandAlunos.Parameters.Add(new SqlParameter("@ContatoEmergencia", string.IsNullOrWhiteSpace(cellContato) ? DBNull.Value : cellContato));
-
-        //                commandAlunos.Parameters.Add(new SqlParameter("@Modalidade", row.Cell("G").GetValue<string>()));
-        //                commandAlunos.Parameters.Add(new SqlParameter("@Faixa", row.Cell("H").GetValue<string>()));
-        //                commandAlunos.Parameters.Add(new SqlParameter("@Plano", row.Cell("I").GetValue<string>()));
-
-        //                await commandAlunos.ExecuteNonQueryAsync();
-        //                totalAlunos++;
-        //            }
-        //            return new
-        //            {
-        //                Status = "Sucesso",
-        //                AlunosAtualizados = totalAlunos
-        //                //LancamentosAtualizados = totalLancamentos,
-        //                //ResumoAtualizado = totalResumo > 0
-        //            };
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return new
-        //        {
-        //            Status = "Erro",
-        //            Mensagem = ex.Message
-        //        };
-        //    }
-        //}
-
-        public async Task<object> SincronizarPlanilhaAsync(string caminhoLocalDoArquivo)
+        public async Task<object> SincronizarPlanilhaAsync(string caminhoLocalDoArquivo, int usuarioId)
         {
             try
             {
                 using var excelStream = new FileStream(caminhoLocalDoArquivo, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
-                int totalAlunos = 0, totalLancamentos = 0, totalResumo = 0;
+                int totalAlunos = 0, totalFluxo = 0, totalPosicaoAlunos = 0;
+                bool alunos = false, fluxo = false, posicaoAlunos = false;
 
                 if (_connection.State != ConnectionState.Open)
                     await ((SqlConnection)_connection).OpenAsync();
 
-                // processar a aba alunos
-                using (var planilha = new XLWorkbook(excelStream))
+                using var reader = ExcelReaderFactory.CreateReader(excelStream);
+
+                do
                 {
-                    var wsAlunos = planilha.Worksheet("Alunos");
-                    var linhasAlunos = wsAlunos.RangeUsed().RowsUsed().Skip(1); // pular 1ª Linha ou cabeçalho
-
-                    foreach (var row in linhasAlunos)
+                    if (reader.Name.Trim().Equals("Dados dos Alunos", StringComparison.OrdinalIgnoreCase))
                     {
-                        using var commandAlunos = _connection.CreateStoredProcedure(Constantes.Constantes.SYNCALUNO);
+                        for (int i = 0; i < 5; i++) reader.Read();
 
-                        commandAlunos.Parameters.Add(new SqlParameter("@Nome", row.Cell("A").GetValue<string>() ?? (object)DBNull.Value));
-                        commandAlunos.Parameters.Add(new SqlParameter("@Status", row.Cell("B").GetValue<string>() ?? (object)DBNull.Value));
-
-                        // 2. Datas (Tratamento 100% seguro com cast de object nos dois lados do IF)
-                        var cellNasc = row.Cell("C");
-                        commandAlunos.Parameters.Add(new SqlParameter("@Nascimento", cellNasc.IsEmpty() ? (object)DBNull.Value : (object)cellNasc.GetDateTime()));
-
-                        var cellMatr = row.Cell("F");
-                        commandAlunos.Parameters.Add(new SqlParameter("@Matricula", cellMatr.IsEmpty() ? (object)DBNull.Value : (object)cellMatr.GetDateTime()));
-
-                        // 3. Textos Opcionais
-                        var txtCelular = row.Cell("D").GetValue<string>();
-                        commandAlunos.Parameters.Add(new SqlParameter("@Celular", string.IsNullOrWhiteSpace(txtCelular) ? (object)DBNull.Value : (object)txtCelular));
-
-                        var txtContato = row.Cell("E").GetValue<string>();
-                        commandAlunos.Parameters.Add(new SqlParameter("@ContatoEmergencia", string.IsNullOrWhiteSpace(txtContato) ? (object)DBNull.Value : (object)txtContato));
-
-                        // 4. Classificações
-                        commandAlunos.Parameters.Add(new SqlParameter("@Modalidade", row.Cell("G").GetValue<string>() ?? (object)DBNull.Value));
-                        commandAlunos.Parameters.Add(new SqlParameter("@Faixa", row.Cell("H").GetValue<string>() ?? (object)DBNull.Value));
-                        commandAlunos.Parameters.Add(new SqlParameter("@Plano", row.Cell("I").GetValue<string>() ?? (object)DBNull.Value));
-
-                        // 5. Financeiro
-                        var cellMensalidade = row.Cell("J");
-                        commandAlunos.Parameters.Add(new SqlParameter("@Mensalidade", cellMensalidade.IsEmpty() ? (object)DBNull.Value : (object)cellMensalidade.GetValue<decimal>()));
-
-                        var cellVencimento = row.Cell("K");
-                        object valorVencimento = DBNull.Value;
-                        if (cellVencimento.TryGetValue<int>(out int diaVencimento))
+                        while (reader.Read())
                         {
-                            valorVencimento = diaVencimento;
-                        }
-                        commandAlunos.Parameters.Add(new SqlParameter("@DiaVencimento", valorVencimento));
+                            var nomeStr = reader.GetValue(1)?.ToString();
+                            if (string.IsNullOrWhiteSpace(nomeStr)) continue;
 
-                        await commandAlunos.ExecuteNonQueryAsync();
-                        totalAlunos++;
+                            using var commandAlunos = _connection.CreateStoredProcedure(Constantes.Constantes.SYNCALUNO);
+
+                            commandAlunos.Parameters.Add(new SqlParameter("@Nome", nomeStr));
+                            commandAlunos.Parameters.Add(new SqlParameter("@Status", reader.GetValue(2)?.ToString() ?? (object)DBNull.Value));
+
+                            var cellNasc = reader.GetValue(3);
+                            commandAlunos.Parameters.Add(new SqlParameter("@Nascimento", cellNasc is DateTime ? (DateTime)cellNasc : (object)DBNull.Value));
+
+                            commandAlunos.Parameters.Add(new SqlParameter("@Celular", reader.GetValue(4)?.ToString() ?? (object)DBNull.Value));
+                            commandAlunos.Parameters.Add(new SqlParameter("@ContatoEmergencia", reader.GetValue(5)?.ToString() ?? (object)DBNull.Value));
+
+                            var cellMatr = reader.GetValue(6);
+                            commandAlunos.Parameters.Add(new SqlParameter("@Matricula", cellMatr is DateTime ? (DateTime)cellMatr : (object)DBNull.Value));
+
+                            commandAlunos.Parameters.Add(new SqlParameter("@Modalidade", reader.GetValue(7)?.ToString() ?? (object)DBNull.Value));
+                            commandAlunos.Parameters.Add(new SqlParameter("@Faixa", reader.GetValue(8)?.ToString() ?? (object)DBNull.Value));
+                            commandAlunos.Parameters.Add(new SqlParameter("@Plano", reader.GetValue(9)?.ToString() ?? (object)DBNull.Value));
+
+                            var cellMensalidade = reader.GetValue(10);
+                            if (cellMensalidade != null && decimal.TryParse(cellMensalidade.ToString(), out decimal m))
+                                commandAlunos.Parameters.Add(new SqlParameter("@Mensalidade", m));
+                            else
+                                commandAlunos.Parameters.Add(new SqlParameter("@Mensalidade", DBNull.Value));
+
+                            await commandAlunos.ExecuteNonQueryAsync();
+                            totalAlunos++;
+                        }
+                        alunos = true;
                     }
-                    return new
+                    else if (reader.Name.Trim().Equals("Fluxo de Caixa", StringComparison.OrdinalIgnoreCase))
                     {
-                        Status = "Sucesso",
-                        AlunosAtualizados = totalAlunos
-                        //LancamentosAtualizados = totalLancamentos,
-                        //ResumoAtualizado = totalResumo > 0
-                    };
-                }
+                        for (int i = 0; i < 9; i++) reader.Read();
+
+                        await _connection.ExecuteAsync("TRUNCATE TABLE FluxoCaixa");
+
+                        while (reader.Read())
+                        {
+                            var dataEfetivaRaw = reader.GetValue(0);
+                            var pagador = reader.GetValue(2)?.ToString();
+
+                            if (dataEfetivaRaw == null || string.IsNullOrWhiteSpace(pagador)) continue;
+
+                            using var commandFluxo = _connection.CreateStoredProcedure(Constantes.Constantes.SYNC_FluxoDeCaixa);
+
+                            commandFluxo.Parameters.Add(new SqlParameter("@DataEfetiva", dataEfetivaRaw is DateTime ? (DateTime)dataEfetivaRaw : (object)DBNull.Value));
+
+                            commandFluxo.Parameters.Add(new SqlParameter("@MesReferencia", reader.GetValue(1)?.ToString() ?? (object)DBNull.Value));
+
+                            commandFluxo.Parameters.Add(new SqlParameter("@Pagador", pagador));
+
+                            commandFluxo.Parameters.Add(new SqlParameter("@Aluno", reader.GetValue(3)?.ToString() ?? (object)DBNull.Value));
+
+                            var valorRaw = reader.GetValue(4);
+                            decimal valorConvertido = 0;
+                            if (valorRaw != null && decimal.TryParse(valorRaw.ToString(), out decimal v))
+                                valorConvertido = v;
+                            commandFluxo.Parameters.Add(new SqlParameter("@Valor", valorConvertido));
+
+                            commandFluxo.Parameters.Add(new SqlParameter("@TipoMovimentacao", reader.GetValue(5)?.ToString() ?? (object)DBNull.Value));
+
+                            var cellDataPag = reader.GetValue(6);
+                            commandFluxo.Parameters.Add(new SqlParameter("@DataPagamento", cellDataPag is DateTime ? (DateTime)cellDataPag : (object)DBNull.Value));
+
+                            commandFluxo.Parameters.Add(new SqlParameter("@Situacao", reader.GetValue(7)?.ToString() ?? (object)DBNull.Value));
+                            commandFluxo.Parameters.Add(new SqlParameter("@Parcelas", reader.GetValue(8)?.ToString() ?? (object)DBNull.Value));
+                            commandFluxo.Parameters.Add(new SqlParameter("@Banco", reader.GetValue(9)?.ToString() ?? (object)DBNull.Value));
+                            commandFluxo.Parameters.Add(new SqlParameter("@FormaPagamento", reader.GetValue(10)?.ToString() ?? (object)DBNull.Value));
+                            commandFluxo.Parameters.Add(new SqlParameter("@BandeiraCartao", reader.GetValue(11)?.ToString() ?? (object)DBNull.Value));
+                            commandFluxo.Parameters.Add(new SqlParameter("@FinalCartao", reader.GetValue(12)?.ToString() ?? (object)DBNull.Value));
+                            commandFluxo.Parameters.Add(new SqlParameter("@CategoriaTipo", reader.GetValue(13)?.ToString() ?? (object)DBNull.Value));
+                            commandFluxo.Parameters.Add(new SqlParameter("@Observacao", reader.GetValue(14)?.ToString() ?? (object)DBNull.Value));
+
+                            await commandFluxo.ExecuteNonQueryAsync();
+                            totalFluxo++;
+                        }
+                        fluxo = true;
+                    }
+                    else if (reader.Name.Trim().StartsWith("Alunos Posição", StringComparison.OrdinalIgnoreCase))
+                    {
+                        string nomeAba = reader.Name.Trim();
+
+                        string anoStr = nomeAba.Replace("Alunos Posição", "", StringComparison.OrdinalIgnoreCase).Trim();
+
+                        if (int.TryParse(anoStr, out int anoReferencia))
+                        {
+                            int anoAtual = DateTime.Now.Year;
+
+                            if (anoReferencia >= anoAtual)
+                            {
+                                await _connection.ExecuteAsync("DELETE FROM PosicaoAlunos WHERE AnoReferencia = @Ano", new { Ano = anoReferencia });
+
+                                for (int i = 0; i < 6; i++) reader.Read();
+
+                                while (reader.Read())
+                                {
+                                    var nomeAluno = reader.GetValue(0)?.ToString();
+                                    if (string.IsNullOrWhiteSpace(nomeAluno)) continue;
+
+                                    using var commandPosicao = _connection.CreateStoredProcedure(Constantes.Constantes.SYNC_AlunosPosicao);
+
+                                    commandPosicao.Parameters.Add(new SqlParameter("@AnoReferencia", anoReferencia));
+                                    commandPosicao.Parameters.Add(new SqlParameter("@NomeAluno", nomeAluno));
+                                    commandPosicao.Parameters.Add(new SqlParameter("@Modalidade", reader.GetValue(1)?.ToString() ?? (object)DBNull.Value));
+                                    commandPosicao.Parameters.Add(new SqlParameter("@Vencimento", reader.GetValue(2)?.ToString() ?? (object)DBNull.Value));
+                                    commandPosicao.Parameters.Add(new SqlParameter("@StatusAluno", reader.GetValue(3)?.ToString() ?? (object)DBNull.Value));
+                                    commandPosicao.Parameters.Add(new SqlParameter("@Plano", reader.GetValue(4)?.ToString() ?? (object)DBNull.Value));
+                                    commandPosicao.Parameters.Add(new SqlParameter("@AcertoAnoAnterior", reader.GetValue(5)?.ToString() ?? (object)DBNull.Value));
+
+                                    commandPosicao.Parameters.Add(new SqlParameter("@Jan", reader.GetValue(6)?.ToString() ?? (object)DBNull.Value));
+                                    commandPosicao.Parameters.Add(new SqlParameter("@Fev", reader.GetValue(7)?.ToString() ?? (object)DBNull.Value));
+                                    commandPosicao.Parameters.Add(new SqlParameter("@Mar", reader.GetValue(8)?.ToString() ?? (object)DBNull.Value));
+                                    commandPosicao.Parameters.Add(new SqlParameter("@Abr", reader.GetValue(9)?.ToString() ?? (object)DBNull.Value));
+                                    commandPosicao.Parameters.Add(new SqlParameter("@Mai", reader.GetValue(10)?.ToString() ?? (object)DBNull.Value));
+                                    commandPosicao.Parameters.Add(new SqlParameter("@Jun", reader.GetValue(11)?.ToString() ?? (object)DBNull.Value));
+                                    commandPosicao.Parameters.Add(new SqlParameter("@Jul", reader.GetValue(12)?.ToString() ?? (object)DBNull.Value));
+                                    commandPosicao.Parameters.Add(new SqlParameter("@Ago", reader.GetValue(13)?.ToString() ?? (object)DBNull.Value));
+                                    commandPosicao.Parameters.Add(new SqlParameter("@Setembro", reader.GetValue(14)?.ToString() ?? (object)DBNull.Value));
+                                    commandPosicao.Parameters.Add(new SqlParameter("@Out", reader.GetValue(15)?.ToString() ?? (object)DBNull.Value));
+                                    commandPosicao.Parameters.Add(new SqlParameter("@Nov", reader.GetValue(16)?.ToString() ?? (object)DBNull.Value));
+                                    commandPosicao.Parameters.Add(new SqlParameter("@Dez", reader.GetValue(17)?.ToString() ?? (object)DBNull.Value));
+
+                                    var valorRaw = reader.GetValue(18);
+                                    decimal valorConvertido = 0;
+                                    if (valorRaw != null && decimal.TryParse(valorRaw.ToString(), out decimal v))
+                                        valorConvertido = v;
+                                    commandPosicao.Parameters.Add(new SqlParameter("@Total", valorConvertido));
+
+                                    await commandPosicao.ExecuteNonQueryAsync();
+                                    totalPosicaoAlunos++;
+                                }
+                                posicaoAlunos = true;
+                            }
+                            else
+                            {
+                                System.Diagnostics.Debug.WriteLine($"Aba 'Alunos Posição {anoReferencia}' ignorada por ser de ano passado.");
+                            }
+                        }
+                    }
+
+                } while (reader.NextResult()); // vai para a próxima aba
+
+                using var commandSyncLog = _connection.CreateStoredProcedure(Constantes.Constantes.SYNC_LOG);
+
+                commandSyncLog.Parameters.Add(new SqlParameter("@UsuarioId", usuarioId));
+                commandSyncLog.Parameters.Add(new SqlParameter("@Alunos", alunos));
+                commandSyncLog.Parameters.Add(new SqlParameter("@AlunosAtualizados", totalAlunos));
+                commandSyncLog.Parameters.Add(new SqlParameter("@FluxoCaixa", fluxo));
+                commandSyncLog.Parameters.Add(new SqlParameter("@FluxoCaixaAtualizados", totalFluxo));
+                commandSyncLog.Parameters.Add(new SqlParameter("@PosicaoAlunos", posicaoAlunos));
+                commandSyncLog.Parameters.Add(new SqlParameter("@PosicaoAlunosAtualizados", totalPosicaoAlunos));
+
+                await commandSyncLog.ExecuteNonQueryAsync();
+
+                return new
+                {
+                    Status = "Sucesso",
+                    AlunosAtualizados = totalAlunos,
+                    LancamentosAtualizados = totalFluxo,
+                    PosicaoAlunosAtualizados = totalPosicaoAlunos
+                };
             }
             catch (Exception ex)
             {
@@ -158,29 +221,22 @@ namespace apexdojohub_API.Services
 
         private async Task<MemoryStream> BaixarArquivoDoOneDrive()
         {
-            // O link direto de download da sua planilha
             var linkCompartilhado = "https://1drv.ms/x/c/35d4e6024a36b4ed/IQCLfb1GlSZlToF2477SpknGAd1o2uYQe2Mjp6mO_pb54D4?e=kxWJ6q";
 
-            // 2. A MÁGICA DA API: Converte o link para o formato URL-Safe Base64 que a Microsoft exige
             string base64Value = Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes(linkCompartilhado))
                 .Replace('/', '_')
                 .Replace('+', '-')
                 .TrimEnd('=');
 
             string encodedUrl = "u!" + base64Value;
-
-            // 3. Monta a URL oficial da API do OneDrive (Essa NUNCA expira e só traz o arquivo cru)
             string linkDownloadDireto = $"https://api.onedrive.com/v1.0/shares/{encodedUrl}/root/content";
 
             using var httpClient = new HttpClient();
-
-            // Faz a requisição direto para a API
             var response = await httpClient.GetAsync(linkDownloadDireto);
             response.EnsureSuccessStatusCode();
 
             var streamBytes = await response.Content.ReadAsByteArrayAsync();
 
-            // Mantemos a trava de segurança do Arquiteto (Verifica se começa com PK / Arquivo ZIP do Excel)
             if (streamBytes.Length < 2 || streamBytes[0] != 80 || streamBytes[1] != 75)
             {
                 var htmlRetornado = System.Text.Encoding.UTF8.GetString(streamBytes);
@@ -189,12 +245,5 @@ namespace apexdojohub_API.Services
 
             return new MemoryStream(streamBytes);
         }
-
-
-        //private async Task<MemoryStream> BaixarArquivoDoOneDrive(string fileId)
-        //{
-        //    // O código real da Graph API entra aqui depois
-        //    return new MemoryStream();
-        //}
     }
 }

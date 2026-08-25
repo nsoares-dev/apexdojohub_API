@@ -112,3 +112,5 @@ C:\Users\nicol\source\repos\apexdojohub_API\apexdojohub_API\bin\Debug\net8.0\Sys
 C:\Users\nicol\source\repos\apexdojohub_API\apexdojohub_API\bin\Debug\net8.0\System.Text.Encodings.Web.dll
 C:\Users\nicol\source\repos\apexdojohub_API\apexdojohub_API\bin\Debug\net8.0\System.Text.Json.dll
 C:\Users\nicol\source\repos\apexdojohub_API\apexdojohub_API\bin\Debug\net8.0\runtimes\browser\lib\net8.0\System.Text.Encodings.Web.dll
+C:\Users\nicol\source\repos\apexdojohub_API\apexdojohub_API\obj\Debug\net8.0\apexdojohub_API.sourcelink.json
+C:\Users\nicol\source\repos\apexdojohub_API\apexdojohub_API\bin\Debug\net8.0\ExcelDataReader.dll

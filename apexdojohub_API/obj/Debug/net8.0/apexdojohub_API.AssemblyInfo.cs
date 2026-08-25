@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("apexdojohub_API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e742c0fab0f28e1a93c47218b13be397fdddd447")]
 [assembly: System.Reflection.AssemblyProductAttribute("apexdojohub_API")]
 [assembly: System.Reflection.AssemblyTitleAttribute("apexdojohub_API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
